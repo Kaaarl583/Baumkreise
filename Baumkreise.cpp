@@ -15,6 +15,7 @@ int Circ = N*(N-1)+1;           // Circumference of the circle
 long complexDist[N*(N-1)];      // List of all the Distances between all Trees
 int tries                       // tracks numbers of tries
 bool Success = true;
+bool Check = true;
 
 distGenerator();                                    //generates a pseudo-random list of N single digits,
                                                     //which is stored in the list "simpleDist"
@@ -25,7 +26,21 @@ void distGenerator(){
     for(ind1=1,simpleDist[0]=1;ind1<N;ind1++;){
         simpleDist[ind1] = distr(gen);              // generate numbers
     }
-    listGenerator();
+    PreCheck();
+}
+
+void PreCheck(){
+    for (Ind1 = 0; Ind1<N; Ind1++;){
+        for (Ind2=Ind1+1;Ind2<N; Ind2++){
+            if(simpleDist[Ind2]==simpleDist[Ind1]){
+                Check = False;
+            }
+        }
+        
+    }
+    if (Check){
+        listGenerator()
+    }
 }
 
 void listGenerator(){                                                       // creates a list of all possible distances between all tress and
